@@ -1,5 +1,7 @@
+import Input from "./components/input";
+
 function App() {
-  return <div>Ready To Code</div>;
+  return <div>Ready to code</div>;
 }
 
 export default App;
