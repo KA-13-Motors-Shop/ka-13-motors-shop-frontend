@@ -1,7 +1,5 @@
-import { useState } from "react";
-
 function App() {
-  return <div>Ready to Code</div>;
+  return <div>Ready To Code</div>;
 }
 
 export default App;
