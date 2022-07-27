@@ -7,7 +7,7 @@ export const Container = styled.div`
   > label {
     font-size: 0.875rem;
     line-height: 1.06rem;
-    color: #212529;
+    color: ${(props) => props.theme.colors.grey.grey1};
   }
 `;
 
@@ -15,14 +15,14 @@ export const StyledInputContainer = styled.div`
   width: 100%;
   > input {
     border: 2px solid;
-    border-color: #ced4da;
+    border-color: ${(props) => props.theme.colors.grey.grey5};
     border-radius: 4px;
     background-color: transparent;
     padding: 10px;
     width: 100%;
 
     &:focus {
-      border-color: #5126ea;
+      border-color: ${(props) => props.theme.colors.brand.brand1};
     }
   }
 `;
