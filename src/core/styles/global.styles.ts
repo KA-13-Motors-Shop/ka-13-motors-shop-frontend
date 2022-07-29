@@ -13,7 +13,7 @@ export const GlobalStyles = createGlobalStyle`
     flex-direction: column;
     width: 100%;
     min-height: 100vh;
-    background-color: #FFFFFF;;
+    background-color: ${(props) => props.theme.colors.white};
   }
 
   body, input, button, textarea {
