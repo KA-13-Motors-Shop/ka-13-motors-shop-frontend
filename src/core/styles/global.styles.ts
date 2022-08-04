@@ -25,8 +25,9 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   button {
+    cursor:pointer;
     outline: 0;
-    border: 0;
+    border: 0; 
   }
 
   a {
