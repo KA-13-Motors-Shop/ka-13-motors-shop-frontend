@@ -7,6 +7,9 @@ export const Container = styled.div`
   align-items: center;
   gap: 1.5rem;
   width: 346px;
+  background-color: ${(props) => props.theme.colors.white};
+  border-radius: 8px;
+  padding-bottom: 32px;
 `;
 
 export const StyledToggleDiv = styled.div`
