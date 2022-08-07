@@ -1,5 +1,5 @@
 import React from "react";
-import { ButtonVariation } from "../../enum/button-variation";
+import { ButtonVariation } from "../../enum/modal-edit-toggle-variations";
 import { Button } from "../button";
 import ModalHeader from "../header-modal";
 import { ModalOverlay } from "../modal-overlay";

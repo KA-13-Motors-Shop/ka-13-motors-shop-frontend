@@ -3,15 +3,16 @@ import ModalHeader from "../header-modal";
 
 import { Container, StyledItem, StyledRoot, StyledToggleDiv } from "./styles";
 
-import { ButtonVariation } from "../../enum/button-variation";
-import { Button } from "../button";
-import { ModalOverlay } from "../modal-overlay";
 import {
+  ButtonVariation,
   TypeAnnounceVariation,
   TypePublishedVariation,
   TypeVeicleVariation,
-} from "../../enum/type-announce-variation";
+} from "../../enum/modal-edit-toggle-variations";
+import { Button } from "../button";
+import { ModalOverlay } from "../modal-overlay";
 import Input from "../input";
+import ButtonAddImgToGallery from "../button-add-img-to-gallery";
 
 const ModalEditAnnounce: React.FC = () => {
   const [typeAnnouce, setTypeAnnouce] = React.useState(
@@ -86,6 +87,29 @@ const ModalEditAnnounce: React.FC = () => {
             </StyledItem>
           </StyledRoot>
         </StyledToggleDiv>
+        <Input
+          label="Imagem da capa"
+          name="cover-image"
+          placeholder="https://image.com"
+        />
+        <Input
+          label="1 imagem da galeria"
+          name="first_image"
+          placeholder="https://image.com"
+        />
+        <Input
+          label="2 imagem da galeria"
+          name="second_image"
+          placeholder="https://image.com"
+        />
+        <ButtonAddImgToGallery>
+          Adicionar campo para imagem da galeria
+        </ButtonAddImgToGallery>
+
+        <div>
+          <Button layout={ButtonVariation.GAYSCALE}>Excluir anúncio</Button>
+          <Button layout={ButtonVariation.BOLDPURPLE}>Salvar alterações</Button>
+        </div>
       </Container>
     </ModalOverlay>
   );

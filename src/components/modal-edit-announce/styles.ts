@@ -10,6 +10,7 @@ export const Container = styled.div`
   background-color: ${(props) => props.theme.colors.white};
   border-radius: 8px;
   padding-bottom: 32px;
+  margin-top: 300px;
 `;
 
 export const StyledToggleDiv = styled.div`
