@@ -3,10 +3,8 @@ import styled from "styled-components";
 export const StyledBrandIcon = styled.div`
   
   font-family: 'Inter',sans-serif;
-  font-weight:600;
+  font-weight:800;
   width:140px;
-    /* height:27px; */
-    /* border-radius:4px; */
 
   p{
       

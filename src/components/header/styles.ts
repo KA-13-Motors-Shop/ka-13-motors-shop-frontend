@@ -2,18 +2,26 @@ import styled from "styled-components";
 
 export const StyledHeader = styled.header`
 
-    border:1px solid ${props=>props.theme.colors.brand.brand1};
-    color: ${props=>props.theme.colors.white};
-    width:146px;
-    height:48px;
+    width:100vw;
+    height:80px;
     display:flex;
     flex-direction:row;
-    justify-content:space-around;
+    justify-content:space-between;
     align-items:center;
-    border-radius:4px;
-    font-size:16px;
-    font-weight:600;
-    font-family:Inter;
-    background-color:${props=>props.theme.colors.brand.brand1};
+    padding:0px 30px 0px 20px;
+    font-family:"Inter",sans-serif;
+    background-color:${props=>props.theme.colors.grey.grey10};
+    
+`
+export const StyledMenuOptions = styled.div`
+
+    
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:center;
+    padding:0px 30px 0px 20px;
+    font-family:"Inter",sans-serif;
+    background-color:${props=>props.theme.colors.grey.grey10};
     
 `
