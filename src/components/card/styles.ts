@@ -8,10 +8,13 @@ export const Container = styled.div<{ auction?: boolean; imgURL: string }>`
   border-radius: 4px 0;
   width: 90%;
   min-width: 300px;
-  max-width: 400px;
+  /* max-width: ${(props) => (props.auction ? "735px" : "312px")}; */
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media screen and (min-width: 900px) {
+    width: ${(props) => (props.auction ? "735px" : "312px")};
+  }
 `;
 
 export const CardWrapper = styled.div<{
@@ -19,12 +22,15 @@ export const CardWrapper = styled.div<{
 }>`
   background: ${(props) =>
     props.auction
-      ? "linear-gradient(180deg, rgba(0, 0, 0, 0.29) 0%, #000000 100%)"
+      ? props.theme.colors.gradients.auctionCardGradient
       : "transparent"};
   display: flex;
   flex-direction: column;
   gap: 24px;
   padding: 33px 31px 33px 22px;
+  @media screen and (min-width: 900px) {
+    width: 100%;
+  }
 `;
 
 export const StyledImgDiv = styled.div<{ auction?: boolean; imgURL: string }>`
@@ -64,7 +70,7 @@ export const StyledDescription = styled.div<{
   flex-direction: column;
   gap: 20px;
 
-  h3 {
+  > h3 {
     font-weight: 600;
     font-size: 20px;
     line-height: 25px;
@@ -82,6 +88,15 @@ export const StyledDescription = styled.div<{
       props.auction
         ? props.theme.colors.grey.grey5
         : props.theme.colors.grey.grey2};
+  }
+
+  @media screen and (min-width: 900px) {
+    > h3 {
+      font-size: ${(props) => (props.auction ? "20px" : "16px")};
+    }
+    > p {
+      font-size: ${(props) => (props.auction ? "20px" : "16px")};
+    }
   }
 `;
 

@@ -14,9 +14,15 @@ export const Container = styled.div`
     font-size: 14px;
     line-height: 24px;
   }
+
+  @media screen and (min-width: 900px) {
+    flex-direction: row;
+    justify-content: space-between;
+    max-height: 140px;
+  }
 `;
 
-export const StyledButtonBackTop = styled.a`
+export const StyledButtonBackTop = styled.button`
   width: 53px;
   height: 50px;
   display: flex;

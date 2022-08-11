@@ -14,6 +14,22 @@ const Home: React.FC = () => {
       <IntroContent />
       <SectionCards title="Leilao">
         <Card auction />
+        <Card auction />
+        <Card auction />
+        <Card auction />
+        <Card auction />
+        <Card auction />
+        <Card auction />
+        <Card auction />
+        <Card auction />
+        <Card auction />
+        <Card auction />
+        <Card auction />
+        <Card auction />
+        <Card auction />
+        <Card auction />
+        <Card auction />
+        <Card auction />
       </SectionCards>
       <SectionCards title="Carros">
         <Card />

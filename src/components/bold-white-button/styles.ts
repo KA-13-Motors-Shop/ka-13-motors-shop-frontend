@@ -9,4 +9,8 @@ export const Container = styled.button`
   border-radius: 4px;
   width: 90%;
   padding: 10px 0;
+
+  @media screen and (min-width: 900px) {
+    max-width: 178px;
+  }
 `;

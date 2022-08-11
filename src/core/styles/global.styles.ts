@@ -7,7 +7,7 @@ export const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
 
-    &::-webkit-scrollbar {
+  &::-webkit-scrollbar {
     width: 3px;
   }
 

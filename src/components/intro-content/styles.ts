@@ -15,6 +15,7 @@ export const Container = styled.div`
     font-size: 32px;
     line-height: 40px;
     text-align: center;
+    max-width: 748px;
   }
   > span {
     font-weight: 400;
@@ -28,5 +29,12 @@ export const Container = styled.div`
     width: 100%;
     align-items: center;
     gap: 22px;
+  }
+
+  @media screen and (min-width: 900px) {
+    > nav {
+      flex-direction: row;
+      justify-content: center;
+    }
   }
 `;
