@@ -1,0 +1,30 @@
+import styled from "styled-components";
+
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
+  background-color: ${(props) => props.theme.colors.grey.grey0};
+  padding: 45px 55.5px;
+
+  > span {
+    color: ${(props) => props.theme.colors.white};
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+  }
+`;
+
+export const StyledButtonBackTop = styled.a`
+  width: 53px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${(props) => props.theme.colors.grey.grey1};
+  border-radius: 4px;
+  > svg {
+    color: ${(props) => props.theme.colors.white};
+  }
+`;

@@ -1,16 +1,8 @@
-import { Button } from "./components/button";
-import Input from "./components/input";
-import ModalCreateAccountFeedback from "./components/modal-create-account-feedback";
-import ModalEditAnnounce from "./components/modal-edit-announce";
-import ModalImageCar from "./components/modal-image-car";
-import { ModalOverlay } from "./components/modal-overlay";
+import Home from "./core/pages/Home";
+import Routes from "./core/routes/routes";
 
 function App() {
-  return (
-    <div>
-      <ModalEditAnnounce />
-    </div>
-  );
+  return <Routes />;
 }
 
 export default App;

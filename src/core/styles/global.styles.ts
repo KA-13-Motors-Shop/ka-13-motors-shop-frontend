@@ -26,11 +26,15 @@ export const GlobalStyles = createGlobalStyle`
     flex-direction: column;
     width: 100%;
     min-height: 100vh;
-    background-color: ${(props) => props.theme.colors.white};
+    background-color: ${(props) => props.theme.colors.grey.grey9};
   }
 
   body, input, button, textarea {
     font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5{
+    font-family: 'Lexend', sans-serif;
   }
 
   ul {
