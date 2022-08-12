@@ -5,8 +5,9 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 0.5rem;
   > label {
-    font-size: 0.875rem;
-    line-height: 1.06rem;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
     color: ${(props) => props.theme.colors.grey.grey1};
   }
 `;
