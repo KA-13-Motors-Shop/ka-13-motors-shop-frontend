@@ -8,6 +8,7 @@ interface PropsLike {
   name?: string;
 }
 
+
 type Props = PropsLike & JSX.IntrinsicElements["button"];
 
 export const Button: React.FC<Props> = ({
