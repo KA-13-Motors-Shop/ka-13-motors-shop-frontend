@@ -2,7 +2,6 @@ import React from "react";
 import { ButtonVariation } from "../../enum/modal-edit-toggle-variations";
 import { AccountType } from "../../enum/register-form-toggle-variations";
 import { Button } from "../button";
-import Footer from "../footer";
 import Input from "../input";
 
 import {
@@ -119,7 +118,6 @@ const RegisterForm: React.FC = () => {
           Finalizar cadastro
         </Button>
       </StyledFormContainer>
-      <Footer />
     </Container>
   );
 };

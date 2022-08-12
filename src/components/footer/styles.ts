@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.footer`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,7 +19,6 @@ export const Container = styled.div`
     flex-direction: row;
     justify-content: space-between;
     max-height: 140px;
-    width: 100%;
   }
 `;
 

@@ -1,6 +1,7 @@
 import React from "react";
 import Card from "../../../components/card";
 import Footer from "../../../components/footer";
+import { Header } from "../../../components/header";
 import IntroContent from "../../../components/intro-content";
 import SectionCards from "../../../components/section-cards";
 
@@ -11,7 +12,10 @@ const Home: React.FC = () => {
     //TO DO:
     // - QUANDO FIZER O FETCH DOS LEILOES PASSAR OS DADOS COMO PROPS PARA O CARD E REFATORAR COM OS DADOS DINAMICOS
     <Container>
-      <IntroContent />
+      <div>
+        <Header />
+        <IntroContent />
+      </div>
       <SectionCards title="Leilao">
         <Card auction />
         <Card auction />

@@ -9,7 +9,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 97px;
-  padding: 46px 0 0;
+  padding: 46px 0 73px 0;
 `;
 
 export const StyledFormContainer = styled(Form)`
