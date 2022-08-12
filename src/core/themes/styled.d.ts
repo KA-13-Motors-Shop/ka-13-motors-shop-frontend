@@ -45,6 +45,10 @@ declare module "styled-components" {
         random11: string;
         random12: string;
       };
+      gradients: {
+        auctionCardGradient: string;
+        announceGradient: string;
+      };
     };
   }
 }

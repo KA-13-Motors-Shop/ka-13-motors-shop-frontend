@@ -1,20 +1,8 @@
-import { BrowserRouter, Router } from "react-router-dom";
-import { BrandIcon } from "./components/brandIcon";
-import { Button } from "./components/button";
-import { Header } from "./components/header";
-import Input from "./components/input";
+import Home from "./core/pages/Home";
+import Routes from "./core/routes/routes";
 
 function App() {
-  return(
-      <BrowserRouter>
-        <div>
-        {/* <Button/> */}
-        {/* <BrandIcon/> */}
-        <Header/>
-        </div>
-      </BrowserRouter>
-  )
-  
+  return <Routes />;
 }
 
 export default App;
