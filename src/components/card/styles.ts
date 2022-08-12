@@ -8,12 +8,12 @@ export const Container = styled.div<{ auction?: boolean; imgURL: string }>`
   border-radius: 4px 0;
   width: 90%;
   min-width: 300px;
-  /* max-width: ${(props) => (props.auction ? "735px" : "312px")}; */
   display: flex;
   flex-direction: column;
   align-items: center;
   @media screen and (min-width: 900px) {
-    width: ${(props) => (props.auction ? "735px" : "312px")};
+    min-width: ${(props) => (props.auction ? "735px" : "312px")};
+    max-width: ${(props) => !props.auction && "312px"};
   }
 `;
 
