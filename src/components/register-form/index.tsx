@@ -1,6 +1,7 @@
 import React from "react";
 import { ButtonVariation } from "../../enum/modal-edit-toggle-variations";
 import { AccountType } from "../../enum/register-form-toggle-variations";
+import { RegisterData } from "../../interfaces/user-interfaces";
 import { Button } from "../button";
 import Input from "../input";
 
@@ -15,8 +16,25 @@ import {
 const RegisterForm: React.FC = () => {
   const [accountType, setAccountType] = React.useState(AccountType.BUYER);
   const formRef = React.useRef({} as any);
-  const handleSubmit = (data: any) => {
-    console.log(data);
+  const handleSubmit = (data: RegisterData) => {
+    const userData = {
+      name: data.name,
+      email: data.email,
+      cpf: data.cpf,
+      birth_date: data.birth_date,
+      descritption: data.description,
+      account_type: data.account_type,
+      password: data.password,
+    };
+
+    const addressData = {
+      cep: data.zip_code,
+      state: data.state,
+      city: data.city,
+      street: data.street,
+      number: data.number,
+      complement: data.complement,
+    };
   };
 
   return (

@@ -40,6 +40,7 @@ const Input: React.FC<{
           name={name}
           ref={inputRef}
           value={value}
+          defaultValue=""
           placeholder={placeholder}
           {...rest}
         />
