@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Container } from "./styles";
+import randomcolor from "randomcolor";
 
 function makeAvatar(title: string) {}
 
@@ -9,6 +10,9 @@ const ProfileAvatar: React.FC<{
   title: string;
 }> = ({ size, title }) => {
   //   const profile = useFormattedProfile();
+
+  const color = randomcolor();
+
   const userInitials = React.useMemo(() => {
     const names = title?.split(" ");
     const { firstName, secondName } =
@@ -22,7 +26,7 @@ const ProfileAvatar: React.FC<{
     return `${firstInitial}${secondInitial}`.toLocaleUpperCase();
   }, [title]);
   return (
-    <Container size={size}>
+    <Container size={size} color={color}>
       <span>{userInitials}</span>
     </Container>
   );

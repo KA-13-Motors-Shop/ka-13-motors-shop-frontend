@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-export const Container = styled.div<{ size: number }>`
+export const Container = styled.div<{ size: number; color: string }>`
   width: ${(props) => (props.size ? `${props.size}px` : "2.5rem")};
   height: ${(props) => (props.size ? `${props.size}px` : "2.5rem")};
   border-radius: 50%;
-  background-color: ${(props) => props.theme.colors.brand.brand1};
+  background-color: ${(props) => props.color};
   display: flex;
   align-items: center;
   justify-content: center;
