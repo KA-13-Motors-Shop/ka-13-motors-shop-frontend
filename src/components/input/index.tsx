@@ -42,7 +42,7 @@ const Input: React.FC<{
           value={value}
           defaultValue=""
           placeholder={placeholder}
-          {...rest}
+          {...(rest as any)}
         />
       </StyledInputContainer>
     </Container>
