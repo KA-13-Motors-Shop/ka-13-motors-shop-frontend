@@ -8,7 +8,6 @@ interface PropsLike {
   name?: string;
 }
 
-
 type Props = PropsLike & JSX.IntrinsicElements["button"];
 
 export const Button: React.FC<Props> = ({
@@ -17,7 +16,6 @@ export const Button: React.FC<Props> = ({
   layout,
   ...props
 }) => {
-  const inputRef = React.useRef({} as any);
   return (
     <StyledButton layout={layout} {...(props as any)}>
       {children}

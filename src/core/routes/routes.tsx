@@ -6,7 +6,7 @@ import AuthRoutes from "./auth.routes";
 const Routes: React.FC = () => {
   const { isAuthenticated } = useAuth();
 
-  return isAuthenticated ? <AuthRoutes /> : <AppRoutes />;
+  return isAuthenticated ? <AppRoutes /> : <AuthRoutes />;
 };
 
 export default Routes;
