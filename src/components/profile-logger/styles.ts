@@ -11,6 +11,7 @@ export const StyledTrigger = styled(DropdownMenu.Trigger)<{
   align-items: center;
   gap: 8px;
   background-color: transparent;
+  padding: 1rem;
   > span {
     font-weight: 500;
     font-size: 14px;
