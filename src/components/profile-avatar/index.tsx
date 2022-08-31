@@ -9,8 +9,6 @@ const ProfileAvatar: React.FC<{
   size: number;
   title: string;
 }> = ({ size, title }) => {
-  //   const profile = useFormattedProfile();
-
   const color = randomcolor();
 
   const userInitials = React.useMemo(() => {
@@ -19,12 +17,16 @@ const ProfileAvatar: React.FC<{
       title && names
         ? { firstName: names[0], secondName: names[1] }
         : { firstName: names[0], secondName: names[1] };
-    //   : profile;
+
     const [firstInitial] = firstName.split("");
     const [secondInitial] = secondName.split("");
 
+    if (!secondName) {
+      return `${firstInitial}`.toLocaleUpperCase();
+    }
     return `${firstInitial}${secondInitial}`.toLocaleUpperCase();
   }, [title]);
+
   return (
     <Container size={size} color={color}>
       <span>{userInitials}</span>

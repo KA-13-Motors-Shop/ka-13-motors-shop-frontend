@@ -19,6 +19,12 @@ export const GlobalStyles = createGlobalStyle`
     background-color: ${(props) => props.theme.colors.brand.brand1};
     border-radius: 20px;
   }
+
+  @media screen and (min-width: 1200px) {
+    ::-webkit-scrollbar {
+      width: 0;
+    }
+  }
   }
 
   body {

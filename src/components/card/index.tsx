@@ -41,7 +41,7 @@ const Card: React.FC<{ auction?: boolean }> = ({ auction }) => {
             industry. Lorem...
           </p>
         </StyledDescription>
-        <ProfileLogger auction={auction} />
+        <ProfileLogger auction={auction} name="Marcelo Alves" />
         <StyledTagsContainer auction={auction}>
           <StyledTags>
             <span>2013</span>

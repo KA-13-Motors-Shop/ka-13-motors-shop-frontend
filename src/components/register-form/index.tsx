@@ -1,9 +1,14 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../core/providers/Auth";
 import { ButtonVariation } from "../../enum/modal-edit-toggle-variations";
 import { AccountType } from "../../enum/register-form-toggle-variations";
 import { RegisterData } from "../../interfaces/user-interfaces";
+import { errorFeedback } from "../../utils/errorFeedback";
+import { toast, ToastVariants } from "../../utils/toast";
 import { Button } from "../button";
 import Input from "../input";
+import GlobalLoader from "../loader";
 
 import {
   Container,
@@ -15,27 +20,46 @@ import {
 
 const RegisterForm: React.FC = () => {
   const [accountType, setAccountType] = React.useState(AccountType.BUYER);
+  const [isLoading, setIsLoading] = React.useState(false);
+  const { signUp } = useAuth();
+  const navigate = useNavigate();
   const formRef = React.useRef({} as any);
-  const handleSubmit = (data: RegisterData) => {
+
+  const handleSubmit = React.useCallback(async (data: RegisterData) => {
+    setIsLoading(true);
+
     const userData = {
       name: data.name,
       email: data.email,
       cpf: data.cpf,
-      birth_date: data.birth_date,
+      phone: data.phone,
+      birthDate: data.birth_date,
       descritption: data.description,
-      account_type: data.account_type,
+      isSeller: accountType == AccountType.BUYER ? false : true,
       password: data.password,
     };
 
     const addressData = {
-      cep: data.zip_code,
+      zipCode: data.zip_code,
       state: data.state,
       city: data.city,
       street: data.street,
       number: data.number,
       complement: data.complement,
     };
-  };
+
+    await signUp({ user: userData, address: addressData })
+      .then(() => {
+        toast({
+          title: "Sucesso",
+          message: "Cadastro efetuado com sucesso",
+          variant: ToastVariants.SUCCESS,
+        });
+        navigate("/login");
+      })
+      .catch(errorFeedback)
+      .finally(() => setIsLoading(false));
+  }, []);
 
   return (
     <Container>
@@ -88,31 +112,11 @@ const RegisterForm: React.FC = () => {
             }}
             defaultValue={accountType}
           >
-            <Input
-              label="Tipo de Conta"
-              name="account_type"
-              value={accountType}
-              id="inputForm"
-            />
-            <StyledItem value={AccountType.BUYER}>
-              <Button
-                layout={ButtonVariation.PRIMARY}
-                type="button"
-                name="account_type"
-                value={accountType}
-              >
-                Comprador
-              </Button>
+            <StyledItem value={AccountType.BUYER} name="account_type">
+              Comprador
             </StyledItem>
-            <StyledItem value={AccountType.SELLER}>
-              <Button
-                layout={ButtonVariation.PRIMARY}
-                type="button"
-                name="account_type"
-                value={accountType}
-              >
-                Vendedor
-              </Button>
+            <StyledItem value={AccountType.SELLER} name="account_type">
+              Vendedor
             </StyledItem>
           </StyledRoot>
           <Input
@@ -136,6 +140,7 @@ const RegisterForm: React.FC = () => {
           Finalizar cadastro
         </Button>
       </StyledFormContainer>
+      <GlobalLoader isLoading={isLoading} />
     </Container>
   );
 };

@@ -41,24 +41,26 @@ export const StyledFormSection = styled.section`
 export const StyledRoot = styled(ToggleGroup.Root)`
   display: flex;
   gap: 6px;
-
-  > #inputForm {
-    display: none;
-  }
 `;
 
 export const StyledItem = styled(ToggleGroup.Item)`
   border-radius: 4px;
+  border: 2px solid ${(props) => props.theme.colors.grey.grey2};
+  background-color: ${(props) => props.theme.colors.white};
+  color: ${(props) => props.theme.colors.grey.grey0};
+  width: 146px;
+  height: 48px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: Inter;
   &[data-state="on"] {
-    > button {
-      background-color: ${(props) => props.theme.colors.brand.brand1};
-      color: ${(props) => props.theme.colors.white};
-      border: none;
-    }
-  }
-  > button {
-    border: 2px solid ${(props) => props.theme.colors.grey.grey2};
-    background-color: ${(props) => props.theme.colors.white};
-    color: ${(props) => props.theme.colors.grey.grey0};
+    background-color: ${(props) => props.theme.colors.brand.brand1};
+    color: ${(props) => props.theme.colors.white};
+    border: none;
   }
 `;

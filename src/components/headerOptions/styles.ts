@@ -18,6 +18,10 @@ export const StyledMenuOptions = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+
+    > span {
+      cursor: pointer;
+    }
   }
   .user {
     border-top: 1px solid ${(props) => props.theme.colors.grey.grey4};
@@ -25,6 +29,10 @@ export const StyledMenuOptions = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+
+    > span {
+      cursor: pointer;
+    }
 
     button {
       width: 310px;
