@@ -55,24 +55,24 @@ const RegisterForm: React.FC = () => {
 
     console.log(data.phone, data.zip_code, data.cpf);
 
-    // try {
-    //   await registerFormValidator(data);
+    try {
+      await registerFormValidator(data);
 
-    //   setIsLoading(true);
+      setIsLoading(true);
 
-    //   await signUp({ user: userData, address: addressData }).then(() => {
-    //     toast({
-    //       title: "Sucesso",
-    //       message: "Cadastro efetuado com sucesso",
-    //       variant: ToastVariants.SUCCESS,
-    //     });
-    //     navigate("/login");
-    //   });
-    // } catch (err) {
-    //   errorFeedbackWithValidator(err, formRef);
-    // } finally {
-    //   setIsLoading(false);
-    // }
+      await signUp({ user: userData, address: addressData }).then(() => {
+        toast({
+          title: "Sucesso",
+          message: "Cadastro efetuado com sucesso",
+          variant: ToastVariants.SUCCESS,
+        });
+        navigate("/login");
+      });
+    } catch (err) {
+      errorFeedbackWithValidator(err, formRef);
+    } finally {
+      setIsLoading(false);
+    }
   }, []);
 
   return (
