@@ -1,10 +1,17 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { cepIso } from "../../core/masks/cep/cep-iso";
+import { cepMask } from "../../core/masks/cep/cep-mask";
+import { cpfIso } from "../../core/masks/cpf/cpf-iso";
+import { cpfMask } from "../../core/masks/cpf/cpf-mask";
+import { onlyNumbers } from "../../core/masks/phone/onlyNumbers";
+import { phoneMask } from "../../core/masks/phone/phone-mask";
 import { useAuth } from "../../core/providers/Auth";
+import { registerFormValidator } from "../../core/validators/registerFormValidator";
 import { ButtonVariation } from "../../enum/modal-edit-toggle-variations";
 import { AccountType } from "../../enum/register-form-toggle-variations";
 import { RegisterData } from "../../interfaces/user-interfaces";
-import { errorFeedback } from "../../utils/errorFeedback";
+import { errorFeedbackWithValidator } from "../../utils/errorFeedbackWithValidator";
 import { toast, ToastVariants } from "../../utils/toast";
 import { Button } from "../button";
 import Input from "../input";
@@ -26,8 +33,6 @@ const RegisterForm: React.FC = () => {
   const formRef = React.useRef({} as any);
 
   const handleSubmit = React.useCallback(async (data: RegisterData) => {
-    setIsLoading(true);
-
     const userData = {
       name: data.name,
       email: data.email,
@@ -48,17 +53,26 @@ const RegisterForm: React.FC = () => {
       complement: data.complement,
     };
 
-    await signUp({ user: userData, address: addressData })
-      .then(() => {
+    console.log(data.phone, data.zip_code, data.cpf);
+
+    try {
+      await registerFormValidator(data);
+
+      setIsLoading(true);
+
+      await signUp({ user: userData, address: addressData }).then(() => {
         toast({
           title: "Sucesso",
           message: "Cadastro efetuado com sucesso",
           variant: ToastVariants.SUCCESS,
         });
         navigate("/login");
-      })
-      .catch(errorFeedback)
-      .finally(() => setIsLoading(false));
+      });
+    } catch (err) {
+      errorFeedbackWithValidator(err, formRef);
+    } finally {
+      setIsLoading(false);
+    }
   }, []);
 
   return (
@@ -73,8 +87,22 @@ const RegisterForm: React.FC = () => {
             name="email"
             placeholder="Ex: samuel@kenzie.com.br"
           />
-          <Input label="CPF" name="cpf" placeholder="000.000.000-00" />
-          <Input label="Celular" name="phone" placeholder="(DDD) 90000-0000" />
+          <Input
+            label="CPF"
+            name="cpf"
+            placeholder="000.000.000-00"
+            mask={cpfMask}
+            iso={cpfIso}
+            maxLength={14}
+          />
+          <Input
+            label="Celular"
+            name="phone"
+            placeholder="(DD) 90000-0000"
+            mask={phoneMask}
+            iso={onlyNumbers}
+            maxLength={15}
+          />
           <Input
             label="Data de Nascimento"
             name="birth_date"
@@ -88,7 +116,14 @@ const RegisterForm: React.FC = () => {
         </StyledFormSection>
         <StyledFormSection>
           <h4>Informacoes de endereco</h4>
-          <Input label="CEP" name="zip_code" placeholder="00000.000" />
+          <Input
+            label="CEP"
+            name="zip_code"
+            placeholder="00000-000"
+            mask={cepMask}
+            iso={cepIso}
+            maxLength={9}
+          />
           <div>
             <Input label="Estado" name="state" placeholder="Digitar Estado" />
             <Input label="Cidade" name="city" placeholder="Digitar cidade" />

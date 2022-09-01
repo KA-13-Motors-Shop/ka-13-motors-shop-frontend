@@ -1,9 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../core/providers/Auth";
+import { loginFormValidator } from "../../core/validators/loginFormValidator";
 import { ButtonVariation } from "../../enum/modal-edit-toggle-variations";
 import { UserLogin } from "../../interfaces/user-interfaces";
 import { errorFeedback } from "../../utils/errorFeedback";
+import { errorFeedbackWithValidator } from "../../utils/errorFeedbackWithValidator";
 import { toast, ToastVariants } from "../../utils/toast";
 import { Button } from "../button";
 import Input from "../input";
@@ -15,22 +17,29 @@ const FormLogin: React.FC = () => {
   const [isLoading, setIsLoading] = React.useState(false);
   const formRef = React.useRef({} as any);
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login, isAuthenticated } = useAuth();
+
+  // !isAuthenticated && navigate("/");
 
   const handleLogin = React.useCallback(async (data: UserLogin) => {
-    setIsLoading(true);
+    try {
+      await loginFormValidator(data);
 
-    await login(data)
-      .then(() => {
+      setIsLoading(true);
+
+      await login(data).then(() => {
         toast({
           title: "Sucesso",
           message: "Logado com sucesso",
           variant: ToastVariants.SUCCESS,
         });
         navigate("/");
-      })
-      .catch(errorFeedback)
-      .finally(() => setIsLoading(false));
+      });
+    } catch (err) {
+      errorFeedbackWithValidator(err, formRef);
+    } finally {
+      setIsLoading(false);
+    }
   }, []);
   return (
     <Container>

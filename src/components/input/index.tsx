@@ -1,26 +1,51 @@
 import { useField } from "@unform/core";
 import React from "react";
 
-import { Container, StyledInputContainer } from "./styles";
+import { Container, StyledInputContainer, ErrorSpan } from "./styles";
 
-const Input: React.FC<{
+interface PropsLike {
   label: string;
   name: string;
   placeholder?: string;
   type?: string;
   value?: string;
   id?: string;
-}> = ({ label, name, placeholder, type = "text", value, id, ...rest }) => {
+  mask?: (value: string) => string;
+  iso?: (value: string) => string;
+}
+
+type InputProps = React.InputHTMLAttributes<HTMLDivElement> & PropsLike;
+
+const Input: React.FC<InputProps> = ({
+  label,
+  name,
+  placeholder,
+  type = "text",
+  value,
+  id,
+  mask,
+  iso,
+  ...rest
+}) => {
   const inputRef = React.useRef({} as any);
 
-  const { fieldName, defaultValue, registerField } = useField(name);
+  const { fieldName, registerField, error } = useField(name);
+
+  const _change = React.useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      event.target.value = mask
+        ? mask(event.target.value)
+        : event.target.value || "";
+    },
+    [mask]
+  );
 
   React.useEffect(() => {
     registerField({
       name: fieldName,
       ref: inputRef,
       getValue: (ref) => {
-        return ref.current.value;
+        return iso ? iso(ref.current.value) : ref.current.value;
       },
       setValue: (ref, value) => {
         ref.current.value = value;
@@ -32,7 +57,7 @@ const Input: React.FC<{
   }, [fieldName, registerField]);
 
   return (
-    <Container id={id}>
+    <Container>
       <label htmlFor="inputForm">{label}</label>
       <StyledInputContainer>
         <input
@@ -42,9 +67,11 @@ const Input: React.FC<{
           value={value}
           defaultValue=""
           placeholder={placeholder}
-          {...(rest as any)}
+          onChange={_change}
+          {...rest}
         />
       </StyledInputContainer>
+      {error && <ErrorSpan error={!!error}>{error}</ErrorSpan>}
     </Container>
   );
 };
