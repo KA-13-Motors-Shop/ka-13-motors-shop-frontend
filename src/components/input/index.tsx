@@ -1,7 +1,7 @@
 import { useField } from "@unform/core";
 import React from "react";
 
-import { Container, StyledInputContainer } from "./styles";
+import { Container, StyledInputContainer, ErrorSpan } from "./styles";
 
 const Input: React.FC<{
   label: string;
@@ -13,7 +13,7 @@ const Input: React.FC<{
 }> = ({ label, name, placeholder, type = "text", value, id, ...rest }) => {
   const inputRef = React.useRef({} as any);
 
-  const { fieldName, defaultValue, registerField } = useField(name);
+  const { fieldName, registerField, error } = useField(name);
 
   React.useEffect(() => {
     registerField({
@@ -45,6 +45,7 @@ const Input: React.FC<{
           {...(rest as any)}
         />
       </StyledInputContainer>
+      {error && <ErrorSpan error={!!error}>{error}</ErrorSpan>}
     </Container>
   );
 };

@@ -1,10 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../core/providers/Auth";
+import { registerFormValidator } from "../../core/validators/registerFormValidator";
 import { ButtonVariation } from "../../enum/modal-edit-toggle-variations";
 import { AccountType } from "../../enum/register-form-toggle-variations";
 import { RegisterData } from "../../interfaces/user-interfaces";
 import { errorFeedback } from "../../utils/errorFeedback";
+import { errorFeedbackWithValidator } from "../../utils/errorFeedbackWithValidator";
 import { toast, ToastVariants } from "../../utils/toast";
 import { Button } from "../button";
 import Input from "../input";
@@ -26,8 +28,6 @@ const RegisterForm: React.FC = () => {
   const formRef = React.useRef({} as any);
 
   const handleSubmit = React.useCallback(async (data: RegisterData) => {
-    setIsLoading(true);
-
     const userData = {
       name: data.name,
       email: data.email,
@@ -48,17 +48,24 @@ const RegisterForm: React.FC = () => {
       complement: data.complement,
     };
 
-    await signUp({ user: userData, address: addressData })
-      .then(() => {
+    try {
+      await registerFormValidator(data);
+
+      setIsLoading(true);
+
+      await signUp({ user: userData, address: addressData }).then(() => {
         toast({
           title: "Sucesso",
           message: "Cadastro efetuado com sucesso",
           variant: ToastVariants.SUCCESS,
         });
         navigate("/login");
-      })
-      .catch(errorFeedback)
-      .finally(() => setIsLoading(false));
+      });
+    } catch (err) {
+      errorFeedbackWithValidator(err, formRef);
+    } finally {
+      setIsLoading(false);
+    }
   }, []);
 
   return (

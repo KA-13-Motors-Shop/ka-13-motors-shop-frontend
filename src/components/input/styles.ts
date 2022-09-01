@@ -27,3 +27,8 @@ export const StyledInputContainer = styled.div`
     }
   }
 `;
+
+export const ErrorSpan = styled.span<{ error: boolean }>`
+  font-size: 0.875rem;
+  color: red;
+`;
