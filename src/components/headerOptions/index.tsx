@@ -1,27 +1,37 @@
 import React from "react";
+import ProfileLogger from "../profile-logger";
+import DropDownUserMenu from "../dropDownUserMenu";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../core/providers/Auth";
 import { errorFeedback } from "../../utils/errorFeedback";
-import GlobalLoader from "../loader";
-import ProfileLogger from "../profile-logger";
-import { StyledMenuOptions, StyledDivider } from "./styles";
+import {
+  StyledAuthManagement,
+  StyledDivider,
+  StyledTrigger,
+  StyledNavigationRoot,
+  StyledNavigationList,
+  StyledNavigationItem,
+} from "./styles";
 
 type Props = JSX.IntrinsicElements["header"];
 
 export const HeaderOptions: React.FC<Props> = ({ ...props }) => {
-  const [user, setUser] = React.useState("");
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [userName, setUserName] = React.useState(
+    localStorage.getItem("@user:name") || " "
+  );
   const { isAuthenticated, fetchUserData } = useAuth();
   const navigate = useNavigate();
+
   const handleUserProfile = React.useCallback(async () => {
-    setIsLoading(true);
     await fetchUserData()
-      .then((res) => setUser(res.name))
-      .catch(errorFeedback)
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, [user]);
+      .then((response) => {
+        localStorage.setItem("@user:name", response.name);
+        setUserName(response.name);
+      })
+      .catch(errorFeedback);
+  }, [userName]);
 
   React.useEffect(() => {
     if (isAuthenticated) {
@@ -29,22 +39,26 @@ export const HeaderOptions: React.FC<Props> = ({ ...props }) => {
     }
   }, [handleUserProfile]);
   return (
-    <StyledMenuOptions {...(props as any)}>
-      <div className="categories">
-        <span>Carros</span>
-        <span>Motos</span>
-        <span>Leilão</span>
-      </div>
+    <StyledNavigationRoot {...(props as any)}>
+      <StyledNavigationList>
+        <StyledNavigationItem>Carros</StyledNavigationItem>
+        <StyledNavigationItem>Motos</StyledNavigationItem>
+        <StyledNavigationItem>Leilão</StyledNavigationItem>
+      </StyledNavigationList>
       <StyledDivider />
       {isAuthenticated ? (
-        <ProfileLogger name={user} />
+        <DropdownMenu.Root>
+          <StyledTrigger>
+            <ProfileLogger name={userName} />
+          </StyledTrigger>
+          <DropDownUserMenu />
+        </DropdownMenu.Root>
       ) : (
-        <div className="user">
+        <StyledAuthManagement>
           <span onClick={() => navigate("/login")}>Fazer Login</span>
           <button onClick={() => navigate("/register")}>Cadastrar</button>
-        </div>
+        </StyledAuthManagement>
       )}
-      <GlobalLoader isLoading={isLoading} />
-    </StyledMenuOptions>
+    </StyledNavigationRoot>
   );
 };

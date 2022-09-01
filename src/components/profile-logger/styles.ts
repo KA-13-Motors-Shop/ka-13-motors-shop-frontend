@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 
-export const Container = styled(DropdownMenu.Root)``;
+export const Container = styled.div``;
 
-export const StyledTrigger = styled(DropdownMenu.Trigger)<{
+export const StyledTrigger = styled.div<{
   auction?: boolean;
 }>`
   cursor: pointer;

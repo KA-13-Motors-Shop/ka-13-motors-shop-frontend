@@ -1,74 +1,92 @@
 import styled from "styled-components";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 
-export const StyledMenuOptions = styled.div`
-  color: ${(props) => props.theme.colors.grey.grey2};
-  font-weight: 600;
-  width: 374px;
-  position: absolute;
-  top: 80px;
-  right: 0;
-
-  padding: 0px 30px 0px 20px;
+export const StyledNavigationRoot = styled(NavigationMenu.Root)`
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+  height: 100%;
+  padding: 20px 30px 0px 20px;
   font-family: "Inter", sans-serif;
+  color: ${(props) => props.theme.colors.grey.grey2};
   background-color: ${(props) => props.theme.colors.grey.grey10};
 
-  /* background-color:blue; */
-  .categories {
-    height: 236px;
+  @media screen and (min-width: 900px) {
+    flex-direction: row;
+    padding-top: 0;
+  }
+`;
+
+export const StyledNavigationList = styled(NavigationMenu.List)`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+
+  @media screen and (min-width: 900px) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+`;
+
+export const StyledNavigationItem = styled(NavigationMenu.Item)`
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+  @media screen and (min-width: 900px) {
+    font-weight: 400;
+  }
+`;
+
+export const StyledAuthManagement = styled.div`
+  border-top: 1px solid ${(props) => props.theme.colors.grey.grey4};
+  display: flex;
+  gap: 44px;
+  height: 100%;
+  flex-direction: column;
+  padding: 30px;
+  padding-left: 0;
+  > span {
     display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 28px;
+    color: ${(props) => props.theme.colors.grey.grey2};
+    cursor: pointer;
+  }
+
+  > button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 0px;
+    background-color: transparent;
+    height: 40px;
+    border: 1px solid ${(props) => props.theme.colors.grey.grey4};
+    border-radius: 4px;
+    padding: 1rem;
+  }
+
+  @media (min-width: 900px) {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+
+    align-items: center;
+
+    border: none;
 
     > span {
-      cursor: pointer;
+      justify-content: center;
+      color: ${(props) => props.theme.colors.brand.brand1};
     }
-  }
-  .user {
-    border-top: 1px solid ${(props) => props.theme.colors.grey.grey4};
-    height: 184px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-
-    > span {
-      cursor: pointer;
-    }
-
-    button {
-      width: 310px;
-      height: 40px;
-      border: 1px solid ${(props) => props.theme.colors.grey.grey4};
-      border-radius: 4px;
-    }
-  }
-  @media (min-width: 800px) {
-    position: absolute;
-    top: 0;
-    display: flex;
-    justify-content: space-between;
-    width: 470px;
-    height: 79px;
-
-    .user {
-      display: flex;
-      flex-direction: row;
-      height: 79px;
-      width: 200px;
-
+    > button {
       align-items: center;
-      justify-content: space-between;
-      border: none;
-      button {
-        width: 100px;
-      }
-    }
-    .categories {
-      display: flex;
-      align-items: center;
-      width: 200px;
-      flex-direction: row;
-      justify-content: space-evenly;
-      height: 79px;
+      justify-content: center;
     }
   }
 `;
@@ -82,5 +100,16 @@ export const StyledDivider = styled.div`
 
   @media screen and (min-width: 900px) {
     display: flex;
+  }
+`;
+
+export const StyledTrigger = styled(DropdownMenu.Trigger)`
+  border-top: 2px solid ${(props) => props.theme.colors.grey.grey4};
+  padding: 32px 0;
+  background-color: ${(props) => props.theme.colors.grey.grey10};
+
+  @media screen and (min-width: 900px) {
+    padding: 0;
+    border: none;
   }
 `;

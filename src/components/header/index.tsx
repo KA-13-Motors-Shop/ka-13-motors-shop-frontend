@@ -1,36 +1,38 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrandIcon } from "../brandIcon";
-import { StyledHeader } from "./styles";
-import menu from "../../others/bars.png";
-import xmark from "../../others/xmark.png";
+import {
+  StyledHeader,
+  StyledDropdownContent,
+  StyledDropdownRoot,
+  StyledDropdownItem,
+  StyledDropdownTrigger,
+} from "./styles";
+
 import { useNavigate } from "react-router-dom";
 import { HeaderOptions } from "../headerOptions";
+import BurguerMenu from "../burguerMenu";
 
 type Props = JSX.IntrinsicElements["header"];
 
 export const Header: React.FC<Props> = ({ ...props }) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const navigate = useNavigate();
 
   return (
     <>
       <StyledHeader {...(props as any)}>
         <BrandIcon onClick={() => navigate("/")} />
-        <button
-          className="menuIcon"
-          onClick={() =>
-            isMenuOpen ? setIsMenuOpen(false) : setIsMenuOpen(true)
-          }
-        >
-          {isMenuOpen ? (
-            <img src={xmark} alt="XmarkImage" />
-          ) : (
-            <img src={menu} alt="MenuIcon" />
-          )}
-        </button>
+        <StyledDropdownRoot onOpenChange={setIsMenuOpen}>
+          <StyledDropdownContent>
+            <StyledDropdownItem>
+              <HeaderOptions className="menuOptionsMobile" />
+            </StyledDropdownItem>
+          </StyledDropdownContent>
+          <StyledDropdownTrigger>
+            <BurguerMenu open={isMenuOpen} />
+          </StyledDropdownTrigger>
+        </StyledDropdownRoot>
         <HeaderOptions className="menuOptionsDesktop" />
-        {isMenuOpen ? <HeaderOptions className="menuOptionsMobile" /> : <></>}
       </StyledHeader>
     </>
   );

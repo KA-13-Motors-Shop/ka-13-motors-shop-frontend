@@ -3,13 +3,11 @@ import React from "react";
 import { Container } from "./styles";
 import randomcolor from "randomcolor";
 
-function makeAvatar(title: string) {}
-
 const ProfileAvatar: React.FC<{
   size: number;
   title: string;
 }> = ({ size, title }) => {
-  const color = randomcolor();
+  const [color] = React.useState(randomcolor());
 
   const userInitials = React.useMemo(() => {
     const names = title?.split(" ");
