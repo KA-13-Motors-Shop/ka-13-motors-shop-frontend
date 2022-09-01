@@ -21,6 +21,7 @@ const ProfileAvatar: React.FC<{
     if (!title.includes(" ")) {
       return `${firstInitial}`.toLocaleUpperCase();
     }
+
     const [secondInitial] = secondName.split("");
 
     return `${firstInitial}${secondInitial}`.toLocaleUpperCase();
