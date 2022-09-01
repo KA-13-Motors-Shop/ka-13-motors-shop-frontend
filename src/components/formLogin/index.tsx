@@ -17,7 +17,9 @@ const FormLogin: React.FC = () => {
   const [isLoading, setIsLoading] = React.useState(false);
   const formRef = React.useRef({} as any);
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login, isAuthenticated } = useAuth();
+
+  // !isAuthenticated && navigate("/");
 
   const handleLogin = React.useCallback(async (data: UserLogin) => {
     try {
